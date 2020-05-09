@@ -65,8 +65,8 @@ switch ($opcion) {
 		break;
 
 	case 4:
-			// $consulta = "SELECT id, procesoCon, procedimientoCon, causaCon, consecuenciaCon, probabilidadCon, impactoCon, calificaRCon, estatusCon, fechaIdentRCon, areaCon, fechaHoraRegCon, idUsuarioCon FROM listaConsecuencias WHERE procesoCau = '$nomProceso' AND procedimientoCau = '$nomProcedimiento' AND areaCau = '$area'";
-			$consulta = "SELECT id, procesoCon, procedimientoCon, causaCon, consecuenciaCon, probabilidadCon, impactoCon, calificaRCon, estatusCon, fechaIdentRCon, areaCon, fechaHoraRegCon, idUsuarioCon FROM listaConsecuencias";
+			$consulta = "SELECT id, procesoCon, procedimientoCon, causaCon, consecuenciaCon, probabilidadCon, impactoCon, calificaRCon, estatusCon, fechaIdentRCon, areaCon, fechaHoraRegCon, idUsuarioCon FROM listaConsecuencias WHERE procesoCon = '$nomProceso' AND procedimientoCon = '$nomProcedimiento' AND areaCon = '$area' AND causaCon = '$nomCausa'";
+			// $consulta = "SELECT id, procesoCon, procedimientoCon, causaCon, consecuenciaCon, probabilidadCon, impactoCon, calificaRCon, estatusCon, fechaIdentRCon, areaCon, fechaHoraRegCon, idUsuarioCon FROM listaConsecuencias";
 	        $resultado = $conexion->prepare($consulta);
 	        $resultado->execute();
 	        $data=$resultado->fetchAll(PDO::FETCH_ASSOC);

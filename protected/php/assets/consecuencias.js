@@ -1,4 +1,4 @@
-Vue.component('causas',{
+Vue.component('consecuencias', {
     template: /*html*/
     `
 <div>
@@ -123,8 +123,9 @@ Vue.component('causas',{
                                     <span class="new badge red" data-badge-caption="pendientes">4</span></div>
                                 <div class="collapsible-body white" style="font-size: .9em;">
                                     <div class="row" style="margin: 0px; padding: 0px;">
-                                        <a href="#">
-                                        <!-- <a :href="'../procedimientos/pro.app?nomProceso='+liCon.proceso"> -->
+                                        <!-- <a href="#"> -->
+                                        <a
+                                            :href="'../responsables/pro.app?nomProceso=${nomProceso}&nomProcedimiento=${nomProcedimiento}&nomCausa=${nomCausa}&nomConsec='+liCon.consecuenciaCon">
                                             <div class="col s7 m8 left-align grey-text waves-effect waves-block" style="font-size: .9em;">
                                                 <b>Calificación del Riesgo:</b>
                                                 <br>

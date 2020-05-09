@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../css/sweetalert2.min.css">
     <link rel="stylesheet" href="../css/animate.css">
     <link rel="stylesheet" href="../css/style.css">
-    <title>Consecuencias</title>
+    <title>Responsables</title>
     <style>
         .centrado-h-v{
             display: flex;
@@ -31,9 +31,11 @@
     $nomProceso = (isset($_GET['nomProceso'])) ? $_GET['nomProceso'] : '';
     $nomProcedimiento = (isset($_GET['nomProcedimiento'])) ? $_GET['nomProcedimiento'] : '';
     $nomCausa = (isset($_GET['nomCausa'])) ? $_GET['nomCausa'] : '';
+    $nomConsec = (isset($_GET['nomConsec'])) ? $_GET['nomConsec'] : '';
     $_SESSION['nomProceso'] = $nomProceso;
     $_SESSION['nomProcedimiento'] = $nomProcedimiento;
     $_SESSION['nomCausa'] = $nomCausa;
+    $_SESSION['nomConsec'] = $nomConsec;
 
     echo '
     <script>
@@ -41,6 +43,7 @@
         let nomProcedimiento = "'.$nomProcedimiento.'"
         let nomCausa = "'.$nomCausa.'"
         let nomArea = "'.$area.'"
+        let nomConsec = "'.$nomConsec.'"
     </script>
     ';
 
@@ -51,7 +54,7 @@
     
     <div id="app" <?php echo $ocultar; ?>>
         <menu-principal></menu-principal>
-        <consecuencias></consecuencias>
+        <responsables></responsables>
     </div>
 
     <script src="../js/vue.js"></script>
@@ -75,17 +78,6 @@
 
         document.addEventListener('DOMContentLoaded', function() {
             M.AutoInit();
-            var elems = document.querySelectorAll('.datepicker');
-            var instances = M.Datepicker.init(elems, {
-                format: 'dd-mm-yyyy',
-                i18n: {
-                    months: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
-                    monthsShort: ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'],
-                    weekdays: ['Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo','Lunes','Martes','Miércoles','Jueves','Viernes'],
-                    weekdaysShort: ['Lun','Mar','Mié','Jue','Vie','Sáb','Dom','Lun','Mar','Mié','Jue','Vie'],
-                    weekdaysAbbrev: ['L','M','M','J','V','S','D']
-                }
-            });
         });
     </script>
 </body>
