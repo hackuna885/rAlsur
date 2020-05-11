@@ -125,7 +125,7 @@ Vue.component('consecuencias', {
                                     <div class="row" style="margin: 0px; padding: 0px;">
                                         <!-- <a href="#"> -->
                                         <a
-                                            :href="'../responsables/pro.app?nomProceso=${nomProceso}&nomProcedimiento=${nomProcedimiento}&nomCausa=${nomCausa}&nomConsec='+liCon.consecuenciaCon">
+                                            :href="'../responsables/pro.app?nomProceso=${nomProceso}&nomProcedimiento=${nomProcedimiento}&nomCausa=${nomCausa}&nomConsec='+liCon.consecuenciaCon+'&cali='+liCon.calificaRCon+'&estatus='+liCon.estatusCon">
                                             <div class="col s7 m8 left-align grey-text waves-effect waves-block" style="font-size: .9em;">
                                                 <b>Calificación del Riesgo:</b>
                                                 <br>

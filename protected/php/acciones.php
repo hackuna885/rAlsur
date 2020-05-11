@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../css/sweetalert2.min.css">
     <link rel="stylesheet" href="../css/animate.css">
     <link rel="stylesheet" href="../css/style.css">
-    <title>Responsables</title>
+    <title>Acciones de Mitigación</title>
     <style>
         .centrado-h-v{
             display: flex;
@@ -34,12 +34,14 @@
     $nomConsec = (isset($_GET['nomConsec'])) ? $_GET['nomConsec'] : '';
     $cali = (isset($_GET['cali'])) ? $_GET['cali'] : '';
     $estatus = (isset($_GET['estatus'])) ? $_GET['estatus'] : '';
+    $nomRespAtenRes = (isset($_GET['nomRespAtenRes'])) ? $_GET['nomRespAtenRes'] : '';
     $_SESSION['nomProceso'] = $nomProceso;
     $_SESSION['nomProcedimiento'] = $nomProcedimiento;
     $_SESSION['nomCausa'] = $nomCausa;
     $_SESSION['nomConsec'] = $nomConsec;
     $_SESSION['cali'] = $cali;
     $_SESSION['estatus'] = $estatus;
+    $_SESSION['nomRespAtenRes'] = $nomRespAtenRes;
 
     echo '
     <script>
@@ -50,6 +52,7 @@
         let nomConsec = "'.$nomConsec.'"
         let cali = "'.$cali.'"
         let estatus = "'.$estatus.'"
+        let nomRespAtenRes = "'.$nomRespAtenRes.'"
     </script>
     ';
 
@@ -60,7 +63,7 @@
     
     <div id="app" <?php echo $ocultar; ?>>
         <menu-principal></menu-principal>
-        <responsables></responsables>
+        <acciones></acciones>
     </div>
 
     <script src="../js/vue.js"></script>

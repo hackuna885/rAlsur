@@ -22,6 +22,7 @@ $nomCausa = (isset($_SESSION['nomCausa'])) ? $_SESSION['nomCausa'] : '';
 $nomConsec = (isset($_SESSION['nomConsec'])) ? $_SESSION['nomConsec'] : '';
 $cali = (isset($_SESSION['cali'])) ? $_SESSION['cali'] : '';
 $estatus = (isset($_SESSION['estatus'])) ? $_SESSION['estatus'] : '';
+$nomRespAtenRes = (isset($_SESSION['nomRespAtenRes'])) ? $_SESSION['nomRespAtenRes'] : '';
 
 
 
@@ -31,7 +32,9 @@ $opcion = (isset($_POST['opcion'])) ? $_POST['opcion'] : '';
 
 
 $id = (isset($_POST['id'])) ? $_POST['id'] : '';
-$nomRespAtenRes = (isset($_POST['nomRespAtenRes'])) ? $_POST['nomRespAtenRes'] : '';
+$accionesAcc = (isset($_POST['accionesAcc'])) ? $_POST['accionesAcc'] : '';
+$fechaSeguiAcc = (isset($_POST['fechaSeguiAcc'])) ? $_POST['fechaSeguiAcc'] : '';
+$fechaCumpliAcc = (isset($_POST['fechaCumpliAcc'])) ? $_POST['fechaCumpliAcc'] : '';
 
 
 $fechaCap = date('d-m-Y');
@@ -41,30 +44,27 @@ $fechaHoraReg = $fechaCap.' '.$horaCap;
 
 switch ($opcion) {
 	case 1:
-		$consulta = "INSERT INTO listaNomRespo (procesoRes, procedimientoRes, causaRes, consecuenciaRes, calificaRRes, estatusRes, nomRespAtenRes, areaRes, fechaHoraRegRes, idUsuarioRes) VALUES('$nomProceso', '$nomProcedimiento', '$nomCausa', '$nomConsec', '$cali', '$estatus', '$nomRespAtenRes', '$area', '$fechaHoraReg', '$nombre')";
+		$consulta = "INSERT INTO listaAcciones (procesoAcc, procedimientoAcc, causaAcc, consecuenciaAcc, calificaRAcc, estatusAcc, nomRespAtenAcc, accionesAcc, fechaSeguiAcc, fechaCumpliAcc, areaAcc, fechaHoraRegAcc, idUsuarioAcc) VALUES('$nomProceso', '$nomProcedimiento', '$nomCausa', '$nomConsec', '$cali', '$estatus', '$nomRespAtenRes', '$accionesAcc', '$fechaSeguiAcc', '$fechaCumpliAcc', '$area', '$fechaHoraReg', '$nombre')";
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();
 		break;
 
 	case 2:
-
-		$calificaRCon = $probabilidadCon * $impactoCon;
-
-		$consulta = "UPDATE listaNomRespo SET nomRespAtenRes='$nomRespAtenRes' WHERE id='$id'";
+		$consulta = "UPDATE listaAcciones SET accionesAcc='$accionesAcc', fechaSeguiAcc='$fechaSeguiAcc', fechaCumpliAcc='$fechaCumpliAcc' WHERE id='$id'";
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();
         $data = $resultado->fetchAll(PDO::FETCH_ASSOC);
 		break;
 
 	case 3:
-		$consulta = "DELETE FROM listaNomRespo WHERE id='$id'";	
+		$consulta = "DELETE FROM listaAcciones WHERE id='$id'";	
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();
 		break;
 
 	case 4:
-			$consulta = "SELECT id, procesoRes, procedimientoRes, causaRes, consecuenciaRes, calificaRRes, estatusRes, nomRespAtenRes, areaRes, fechaHoraRegRes, idUsuarioRes FROM listaNomRespo WHERE procesoRes = '$nomProceso' AND procedimientoRes = '$nomProcedimiento' AND causaRes = '$nomCausa' AND consecuenciaRes = '$nomConsec' AND areaRes = '$area' AND calificaRRes = '$cali' AND estatusRes = '$estatus'";
-			// $consulta = "SELECT id, procesoRes, procedimientoRes, causaRes, consecuenciaRes, calificaRRes, estatusRes, nomRespAtenRes, areaRes, fechaHoraRegRes, idUsuarioRes FROM listaNomRespo";
+			$consulta = "SELECT id, procesoAcc, procedimientoAcc, causaAcc, consecuenciaAcc, calificaRAcc, estatusAcc, nomRespAtenAcc, accionesAcc, fechaSeguiAcc, fechaCumpliAcc, areaAcc, fechaHoraRegAcc, idUsuarioAcc FROM listaAcciones WHERE procesoAcc = '$nomProceso' AND procedimientoAcc = '$nomProcedimiento' AND causaAcc = '$nomCausa' AND consecuenciaAcc = '$nomConsec' AND calificaRAcc = '$cali' AND estatusAcc = '$estatus' AND nomRespAtenAcc = '$nomRespAtenRes'";
+			// $consulta = "SELECT id, procesoAcc, procedimientoAcc, causaAcc, consecuenciaAcc, calificaRAcc, estatusAcc, nomRespAtenAcc, accionesAcc, fechaSeguiAcc, fechaCumpliAcc, areaAcc, fechaHoraRegAcc, idUsuarioAcc FROM listaAcciones";
 	        $resultado = $conexion->prepare($consulta);
 	        $resultado->execute();
 	        $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
