@@ -166,6 +166,11 @@ Vue.component('acciones',{
                                 class="btn blue darken-4"><i
                                     class="material-icons left">keyboard_arrow_left</i>Regresar</a>
                         </div>
+                        <div class="right" style="margin-top: 20px; margin-bottom: 20px;">
+                            <a href="../inicio/home.app"
+                                class="btn blue darken-4">Terminar<i
+                                class="material-icons right">keyboard_arrow_right</i></a>
+                        </div>
                     </div>
                     
                 </div>
