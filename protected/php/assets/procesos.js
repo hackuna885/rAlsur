@@ -2,7 +2,6 @@ Vue.component('procesos',{
     template: /*html*/
     `
 <div>
-    <!-- git -->
     <div class="container section centrado-h-v" id="precarga">
         <div class="preloader-wrapper big active">
             <div class="spinner-layer spinner-blue-only">
@@ -78,7 +77,7 @@ Vue.component('procesos',{
                 </div>
 
             </div>
-        </div>
+        </div>    
     </div>
     
 </div>

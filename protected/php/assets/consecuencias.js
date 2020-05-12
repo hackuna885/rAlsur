@@ -163,6 +163,20 @@ Vue.component('consecuencias', {
                                                 <br>
                                                 <b>Causa:</b> {{liCon.causaCon}}
                                                 <br>
+                                                <b>Estatus:</b>
+                                                <span v-if="liCon.estatusCon === 'Abierto'">
+                                                    <span class="red-text">{{liCon.estatusCon}}</span>
+                                                </span>
+                                                <span v-else-if="liCon.estatusCon === 'En Atención'">
+                                                    <span class="orange-text">{{liCon.estatusCon}}</span>
+                                                </span>
+                                                <span v-else>
+                                                    <span class="green-text">{{liCon.estatusCon}}</span>
+                                                </span>
+                                                 
+                                                <br>
+                                                <b>Fecha de Identificación del Riesgo:</b> {{liCon.fechaIdentRCon}}
+                                                <br>
                                                 <div style="font-size: .9em;">
                                                     <b>Area:</b> {{liCon.areaCon}} - {{liCon.idUsuarioCon}}
                                                     <br>
@@ -172,7 +186,7 @@ Vue.component('consecuencias', {
                                         </a>
                                         <div class="col s5 m4">
                                             <button class="btn blue darken-4 white-text waves-effect waves-light"
-                                                @click="btnEditar(liCon.id, liCon.consecuenciaCon, liCon.probabilidadCon, liCon.impactoCon, liCon.calificaRCon, liCon.estatusCon, liCon.fechaIdentRCon)"><i
+                                                @click="btnEditar(liCon.id, liCon.consecuenciaCon, liCon.probabilidadCon, liCon.impactoCon, liCon.estatusCon, liCon.fechaIdentRCon)"><i
                                                     class="material-icons">edit</i></button>
                                             <button class="btn grey white-text waves-effect waves-light"
                                                 @click="btnEliminar(liCon.id, liCon.consecuenciaCon)"><i
