@@ -24,7 +24,7 @@
             padding: .8rem;
         }
     </style>
-        <!-- DATOS USUARIO -->
+    <!-- DATOS USUARIO -->
     <?php include 'infoUser.php'; ?>
     <!-- DATOS USUARIO -->
 </head>

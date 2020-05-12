@@ -48,7 +48,12 @@ Vue.component('procesos',{
                                 <div class="collapsible-header">
                                     <i class="material-icons">collections_bookmark</i>
                                     {{liPro.proceso}}
-                                    <span class="new badge red" data-badge-caption="pendientes">4</span></div>
+                                    <span v-if="liPro.estatusAbierto >= 1" class="new badge red" data-badge-caption="pendientes">
+                                        {{liPro.estatusAbierto}}
+                                    </span>
+                                </div>
+                                    <!-- <span class="new badge red" data-badge-caption="pendientes">4</span></div> -->
+                                    
                                 <div class="collapsible-body white" style="font-size: .9em;">
                                     <div class="row" style="margin: 0px; padding: 0px;">
                                         <a :href="'../procedimientos/pro.app?nomProceso='+liPro.proceso+'&nomArea='+liPro.area">
@@ -85,7 +90,7 @@ Vue.component('procesos',{
     data() {
         return {
             dataProcesos: [],
-            nProceso: ''
+            nProceso: '',
         }
     },
     methods: {

@@ -54,9 +54,9 @@ switch ($opcion) {
 		
 		//Si el Usuario es Administrador
 		if($tipoUsuario == 1){
-			$consulta = "SELECT id, proceso, area, idUsuario, fechaHoraReg FROM listaProcesos";
+			$consulta = "SELECT id, proceso, area, idUsuario, fechaHoraReg, estatusAbierto FROM vPenProcesosU GROUP BY proceso ORDER BY proceso";
 		}else{
-			$consulta = "SELECT id, proceso, area, idUsuario, fechaHoraReg FROM listaProcesos WHERE area = '$area'";
+			$consulta = "SELECT id, proceso, area, idUsuario, fechaHoraReg, estatusAbierto FROM vPenProcesosU GROUP BY proceso ORDER BY proceso WHERE area = '$area'";
 		}
 			// $consulta = "SELECT id, proceso, area, idUsuario, fechaHoraReg FROM listaProcesos";
 	        $resultado = $conexion->prepare($consulta);
