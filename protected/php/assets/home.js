@@ -32,7 +32,7 @@ Vue.component('home-panel',{
                                 </div>
                                 <div class="col s6 centrado-h-v">
                                     <div class="center-align">
-                                        <p style="font-size: 3em;">1</p>
+                                        <p style="font-size: 3em;">${cuantosProcesos}</p>
                                         <p>Registros</p>
                                     </div>
                                 </div>
@@ -50,7 +50,7 @@ Vue.component('home-panel',{
                                 </div>
                                 <div class="col s6 centrado-h-v">
                                     <div class="center-align">
-                                        <p style="font-size: 3em;">1</p>
+                                        <p style="font-size: 3em;">${cuantosProcedimientos}</p>
                                         <p>Registros</p>
                                     </div>
                                 </div>
@@ -76,7 +76,7 @@ Vue.component('home-panel',{
                                 </div>
                                 <div class="col s6 centrado-h-v">
                                     <div class="center-align">
-                                        <p style="font-size: 3em;">1</p>
+                                        <p style="font-size: 3em;">${cuantosConsecCriticos}</p>
                                         <p>Registros</p>
                                     </div>
                                 </div>
@@ -94,7 +94,7 @@ Vue.component('home-panel',{
                                 </div>
                                 <div class="col s6 centrado-h-v">
                                     <div class="center-align">
-                                        <p style="font-size: 3em;">1</p>
+                                        <p style="font-size: 3em;">${cuantosConsecAltos}</p>
                                         <p>Registros</p>
                                     </div>
                                 </div>
@@ -112,7 +112,7 @@ Vue.component('home-panel',{
                                 </div>
                                 <div class="col s6 centrado-h-v">
                                     <div class="center-align">
-                                        <p style="font-size: 3em;">1</p>
+                                        <p style="font-size: 3em;">${cuantosConsecMedios}</p>
                                         <p>Registros</p>
                                     </div>
                                 </div>
@@ -130,7 +130,7 @@ Vue.component('home-panel',{
                                 </div>
                                 <div class="col s6 centrado-h-v">
                                     <div class="center-align">
-                                        <p style="font-size: 3em;">1</p>
+                                        <p style="font-size: 3em;">${cuantosConsecBajo}</p>
                                         <p>Registros</p>
                                     </div>
                                 </div>

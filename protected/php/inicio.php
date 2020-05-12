@@ -24,6 +24,8 @@
     <!-- DATOS USUARIO -->
     <?php include 'infoUser.php'; ?>
     <!-- DATOS USUARIO -->
+    
+    <?php include 'graficasHome.php'; ?>
 </head>
 <body>
     
@@ -67,7 +69,7 @@
         datasets: [{
         label: 'Riesgos',
         backgroundColor: ['#D32F2F','#F57C00', '#FBC02D', '#43A047'],
-        data: [10, 8, 5, 2]
+        data: <?php echo $graficaPrincipal;?>
         }]
         },
 
