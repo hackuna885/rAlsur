@@ -21,7 +21,7 @@
             min-height: 195px;
         }
     </style>
-        <!-- DATOS USUARIO -->
+    <!-- DATOS USUARIO -->
     <?php include 'infoUser.php'; ?>
     <!-- DATOS USUARIO -->
 </head>

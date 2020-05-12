@@ -38,7 +38,7 @@ Vue.component('menu-principal', {
                                 <img src="../img/galeria/sidevar.jpg" class="responsive-img">
                             </div>
                             <div class="centrado-h-v">
-                                <a href="#user"><img class="circle" src="../img/users/oliver885.jpg"
+                                <a href="#user"><img class="circle" src="../img/${imgLoginUsr}"
                                         style="width: 80px; height: 80px;"></a>
                             </div>
                             <a href="#name"><span class="white-text name">${nombre}</span></a>

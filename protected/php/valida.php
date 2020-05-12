@@ -46,6 +46,7 @@ if (isset($_POST['txtUsr']) && !empty($_POST['txtUsr']) &&
 
 				$_SESSION['nombre'] = $nombre;
 				$_SESSION['correo'] = $correo;
+				$_SESSION['correoMd5'] = $correoMd5;
 				$_SESSION['area'] = $area;
 				$_SESSION['tipoUsuario'] = $tipoUsuario;
 
