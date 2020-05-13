@@ -48,11 +48,13 @@ Vue.component('procesos',{
                                 <div class="collapsible-header">
                                     <i class="material-icons">collections_bookmark</i>
                                     {{liPro.proceso}}
-                                    <span v-if="liPro.estatusAbierto >= 1" class="new badge red" data-badge-caption="pendientes">
-                                        {{liPro.estatusAbierto}}
+                                    <span v-if="liPro.estatusAbie >= 1" class="new badge red" data-badge-caption="A">
+                                        {{liPro.estatusAbie}}
+                                    </span>
+                                    <span v-if="liPro.estatusAten >= 1" class="new badge orange" data-badge-caption="P">
+                                        {{liPro.estatusAten}}
                                     </span>
                                 </div>
-                                    <!-- <span class="new badge red" data-badge-caption="pendientes">4</span></div> -->
                                     
                                 <div class="collapsible-body white" style="font-size: .9em;">
                                     <div class="row" style="margin: 0px; padding: 0px;">
