@@ -87,7 +87,14 @@ Vue.component('acciones',{
                                     </span>
                                     
                                     <!-- Calificación VUE -->
-                                    <span class="new badge red" data-badge-caption="pendientes">4</span></div>
+                                    <!-- <span class="new badge red" data-badge-caption="pendientes">4</span> -->
+                                    <span v-if="liAcc.estatusAcc === 'Abierto'" class="new badge red" data-badge-caption="A">
+                                        1
+                                    </span>
+                                    <span v-if="liAcc.estatusAcc === 'En Atención'" class="new badge orange" data-badge-caption="P">
+                                        1
+                                    </span>
+                                </div>
                                 <div class="collapsible-body white" style="font-size: .9em;">
                                     <div class="row" style="margin: 0px; padding: 0px;">
                                         <a href="#">

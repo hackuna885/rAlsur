@@ -56,7 +56,7 @@ switch ($opcion) {
 		break;
 
 	case 4:
-			$consulta = "SELECT id, procesoCau, procedimientoCau, causaCau, areaCau, fechaHoraRegCau, idUsuarioCau FROM listaCausas WHERE procesoCau = '$nomProceso' AND procedimientoCau = '$nomProcedimiento' AND areaCau = '$area'";
+			$consulta = "SELECT id, procesoCau, procedimientoCau, causaCau, areaCau, fechaHoraRegCau, idUsuarioCau, SUM(estatusAbie) AS estatusAbie, SUM(estatusAten) AS estatusAten, SUM(estatusCerr ) AS estatusCerr FROM vListaCausaP WHERE procesoCau = '$nomProceso' AND procedimientoCau = '$nomProcedimiento' AND areaCau = '$area' GROUP BY procesoCau, procedimientoCau, causaCau";
 			// $consulta = "SELECT id, procesoCau, procedimientoCau, causaCau, areaCau, fechaHoraRegCau, idUsuarioCau FROM listaCausas";
 	        $resultado = $conexion->prepare($consulta);
 	        $resultado->execute();

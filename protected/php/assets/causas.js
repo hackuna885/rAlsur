@@ -53,7 +53,14 @@ Vue.component('causas',{
                                 <div class="collapsible-header">
                                     <i class="material-icons">call_split</i>
                                     {{liCau.causaCau}}
-                                    <span class="new badge red" data-badge-caption="pendientes">4</span></div>
+                                    <!-- <span class="new badge red" data-badge-caption="pendientes">4</span> -->
+                                    <span v-if="liCau.estatusAbie >= 1" class="new badge red" data-badge-caption="A">
+                                        {{liCau.estatusAbie}}
+                                    </span>
+                                    <span v-if="liCau.estatusAten >= 1" class="new badge orange" data-badge-caption="P">
+                                        {{liCau.estatusAten}}
+                                    </span>
+                                </div>
                                 <div class="collapsible-body white" style="font-size: .9em;">
                                     <div class="row" style="margin: 0px; padding: 0px;">
                                         <!-- <a href="#"> -->
