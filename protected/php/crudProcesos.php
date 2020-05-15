@@ -56,7 +56,7 @@ switch ($opcion) {
 		if($tipoUsuario == 1){
 			$consulta = "SELECT id,proceso,area,idUsuario,fechaHoraReg,SUM(estatusAbie) AS estatusAbie,SUM(estatusAten) AS estatusAten,SUM(estatusCerr) AS estatusCerr FROM vListaProcesosP GROUP BY proceso";
 		}else{
-			$consulta = "SELECT id,proceso,area,idUsuario,fechaHoraReg,SUM(estatusAbie) AS estatusAbie,SUM(estatusAten) AS estatusAten,SUM(estatusCerr) AS estatusCerr FROM vListaProcesosPWHERE area = '$area' GROUP BY proceso";
+			$consulta = "SELECT id,proceso,area,idUsuario,fechaHoraReg,SUM(estatusAbie) AS estatusAbie,SUM(estatusAten) AS estatusAten,SUM(estatusCerr) AS estatusCerr FROM vListaProcesosP WHERE area = '$area' GROUP BY proceso";
 		}
 			// $consulta = "SELECT id, proceso, area, idUsuario, fechaHoraReg FROM listaProcesos";
 	        $resultado = $conexion->prepare($consulta);

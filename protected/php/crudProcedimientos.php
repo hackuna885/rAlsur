@@ -57,7 +57,8 @@ switch ($opcion) {
 		break;
 
 	case 4:
-			$consulta = "SELECT id, procesoPro, procedimientoPro, descripDelRiesgoPro, factDeRiesgoPro, areaPro, fechaHoraRegPro,idUsuarioPro FROM listaProcedimientos WHERE procesoPro = '$nomProceso' AND areaPro = '$area'";
+			// $consulta = "SELECT id, procesoPro, procedimientoPro, descripDelRiesgoPro, factDeRiesgoPro, areaPro, fechaHoraRegPro,idUsuarioPro FROM listaProcedimientos WHERE procesoPro = '$nomProceso' AND areaPro = '$area'";
+			$consulta = "SELECT id, procesoPro, procedimientoPro, descripDelRiesgoPro, factDeRiesgoPro, areaPro, fechaHoraRegPro, idUsuarioPro, SUM(estatusAbie) AS estatusAbie, SUM(estatusAten) AS estatusAten, SUM(estatusCerr ) AS estatusCerr FROM vListaProcedimientosP WHERE procesoPro = '$nomProceso' AND areaPro = '$area' GROUP BY procesoPro, procedimientoPro";
 	        $resultado = $conexion->prepare($consulta);
 	        $resultado->execute();
 	        $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
