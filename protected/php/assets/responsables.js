@@ -81,10 +81,10 @@ Vue.component('responsables',{
                                     <!-- Calificación VUE -->
                                     <!-- <span class="new badge red" data-badge-caption="pendientes">4</span> -->
                                     <span v-if="liRes.estatusRes === 'Abierto'" class="new badge red" data-badge-caption="A">
-                                        1
+                                        
                                     </span>
                                     <span v-if="liRes.estatusRes === 'En Atención'" class="new badge orange" data-badge-caption="P">
-                                        1
+                                        
                                     </span>
                                 </div>
                                 <div class="collapsible-body white" style="font-size: .9em;">
