@@ -22,7 +22,15 @@ Vue.component('menu-principal', {
                             </div>
                         </a>
                         <ul id="nav-mobile" class="right valign-wrapper">
-                            <li><a href="#"><i class="material-icons"><img src="../img/icons/notifica.svg"></i></a></li>
+                            <li><a class="dropdown-trigger btn" href="#" data-target="notificacion"><i class="material-icons"><img src="../img/icons/notifica.svg"></i></a>
+
+                                <!-- Dropdown Notificación -->
+                                <ul id="notificacion" class="dropdown-content">
+                                    <li v-for="liNotifica of dataNotifica"><a
+                                            href="#!" style="font-size: .8em;">{{liNotifica.accPen}} - {{liNotifica.notaEspecial}}</a></li>
+                                </ul>
+
+                            </li>
                             <li class="hide-on-med-and-down"><a href="#" @click="cerrarSesion">Cerrar sesión<i
                                         class="material-icons right"><img
                                             src="../img/icons/apagar.svg"></i></a>
@@ -60,6 +68,7 @@ Vue.component('menu-principal', {
                 `,
     data() {
         return {
+            dataNotifica:[]
             
         }
     },
@@ -79,6 +88,15 @@ Vue.component('menu-principal', {
                     window.location = '../index.php';
                 }
             })
-        }
+        },
+        listaDatos() {
+            axios.post('../notifica/lista.app', {
+            }).then(response => {
+                this.dataNotifica = response.data;
+            });
+        },
+    },
+    created() {
+        this.listaDatos();
     },
 })
