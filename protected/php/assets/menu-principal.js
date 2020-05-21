@@ -22,12 +22,26 @@ Vue.component('menu-principal', {
                             </div>
                         </a>
                         <ul id="nav-mobile" class="right valign-wrapper">
-                            <li><a class="dropdown-trigger btn" href="#" data-target="notificacion"><i class="material-icons"><img src="../img/icons/notifica.svg"></i></a>
+                            <li><a class="dropdown-trigger iconMenuNotifica" href="#" data-target="notificacion" style="width: 220px;"><i class="material-icons"><img src="../img/icons/notifica.svg"></i></a>
 
                                 <!-- Dropdown Notificación -->
-                                <ul id="notificacion" class="dropdown-content">
+                                <!-- <ul id="notificacion" class="dropdown-content">
                                     <li v-for="liNotifica of dataNotifica"><a
                                             href="#!" style="font-size: .8em;">{{liNotifica.accPen}} - {{liNotifica.notaEspecial}}</a></li>
+                                </ul> -->
+                                
+                                <ul class="collection dropdown-content" id="notificacion">
+                                    <li class="collection-item avatar" v-for="liNotifica of dataNotifica" style="font-size: .6em; line-height: 1.3em;">
+                                      <img src="../img/usrLogin.svg" alt="" class="circle">
+                                      <p class="left-align blue-text text-darken-4" style="padding: 0px;">
+                                        <b>{{liNotifica.procesoAcc}}</b>
+                                      </p>
+                                      <p>
+                                        <b>{{liNotifica.procedimientoAcc}}</b>
+                                      </p>
+                                      <p style="font-style: italic;">{{liNotifica.accionesAcc}}</p>
+                                      <p class="red-text">{{liNotifica.notaEspecial}}</p>
+                                    </li>
                                 </ul>
 
                             </li>

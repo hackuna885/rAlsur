@@ -10,9 +10,12 @@ $array = array();
 
 $con = new SQLite3("../data/riesgos.db");
 
-$contadorNotifica = $con -> query("SELECT COUNT(fechaCumpliAcc) AS accPen,fechaCumpliAcc FROM listaAcciones GROUP BY fechaCumpliAcc  ORDER BY fechaCumpliAcc ");
+// $contadorNotifica = $con -> query("SELECT COUNT(fechaCumpliAcc) AS accPen,fechaCumpliAcc FROM listaAcciones GROUP BY fechaCumpliAcc  ORDER BY fechaCumpliAcc ");
+$contadorNotifica = $con -> query("SELECT procesoAcc, procedimientoAcc,accionesAcc, fechaCumpliAcc FROM listaAcciones ORDER BY procesoAcc, procedimientoAcc, fechaCumpliAcc");
     while ($numNotifica = $contadorNotifica->fetchArray()) {
-        $accPen = $numNotifica['accPen'];
+        $procesoAcc = $numNotifica['procesoAcc'];
+        $procedimientoAcc = $numNotifica['procedimientoAcc'];
+        $accionesAcc = $numNotifica['accionesAcc'];
         $fechaCumpliAcc = $numNotifica['fechaCumpliAcc'];
 
         $fechaTermino = $fechaCumpliAcc;
@@ -507,7 +510,7 @@ $contadorNotifica = $con -> query("SELECT COUNT(fechaCumpliAcc) AS accPen,fechaC
             }
         }
 
-    $baseNotifica = array("accPen"=>$accPen, "fechaCumpliAcc"=>$fechaCumpliAcc, "notaEspecial"=>$contadorDiasRestantes);
+    $baseNotifica = array("procesoAcc"=>$procesoAcc, "procedimientoAcc"=>$procedimientoAcc, "accionesAcc"=>$accionesAcc, "fechaCumpliAcc"=>$fechaCumpliAcc, "notaEspecial"=>$contadorDiasRestantes);
 
     $array[] = $baseNotifica; //Almacena los datos en un arrar array_push($array, $baseNotifica); 
     

@@ -20,6 +20,15 @@ html {
     background-size: cover;
 }
 
+.iconMenuNotifica{
+    text-align: center;
+  }
+  @media only screen and (max-width: 992px) {
+    .iconMenuNotifica{
+        text-align: right;
+      }
+  }
+
 .dashboard-sideBar,
 .dashboard-contentPage {
     position: absolute;
