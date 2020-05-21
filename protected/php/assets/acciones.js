@@ -155,7 +155,7 @@ Vue.component('acciones',{
                                         </a>
                                         <div class="col s5 m4">
                                             <button class="btn blue darken-4 white-text waves-effect waves-light"
-                                                @click="btnEditar(liAcc.id, liAcc.accionesAcc, liAcc.fechaSeguiAcc, liAcc.fechaCumpliAcc)"><i
+                                                @click="btnEditar(liAcc.id, liAcc.accionesAcc, liAcc.estatusAcc, liAcc.fechaSeguiAcc, liAcc.fechaCumpliAcc)"><i
                                                     class="material-icons">edit</i></button>
                                             <button class="btn grey white-text waves-effect waves-light"
                                                 @click="btnEliminar(liAcc.id)"><i
@@ -196,10 +196,10 @@ Vue.component('acciones',{
         }
     },
     methods: {
-            btnEditar: async function (id, accionesAcc, fechaSeguiAcc, fechaCumpliAcc) {
+            btnEditar: async function (id, accionesAcc, estatusAcc, fechaSeguiAcc, fechaCumpliAcc) {
                 await Swal.fire({
                     title: 'EDITAR',
-                    html: '<div class="row"><div class="col s12"><label class="left">Responsable de Atención del Riesgo</label><input type="text" id="accionesAcc" value="' + accionesAcc + '"></div><div class="col s6"><label class="left">Fecha de Seguimiento</label><input type="date" id="fechaSeguiAcc" value="' + fechaSeguiAcc + '"></div><div class="col s6"><label class="left">Fecha de Cumplimiento</label><input type="date" id="fechaCumpliAcc" value="' + fechaCumpliAcc + '"></div></div>',
+                    html: '<div class="row"><div class="col s12"><label class="left">Responsable de Atención del Riesgo</label><input type="text" id="accionesAcc" value="' + accionesAcc + '"></div><div class="col s12"><label class="left">Estatus</label><select class="browser-default" id="estatusAcc"><option value="'+ estatusAcc +'" disabled selected>'+ estatusAcc +'</option><option value="Abierto">Abierto</option><option value="Cerrado">Cerrado</option><option value="En Atención">En Atención</option></select></div><div class="col s6"><label class="left">Fecha de Seguimiento</label><input type="date" id="fechaSeguiAcc" value="' + fechaSeguiAcc + '"></div><div class="col s6"><label class="left">Fecha de Cumplimiento</label><input type="date" id="fechaCumpliAcc" value="' + fechaCumpliAcc + '"></div></div>',
                     focusConfirm: false,
                     showCancelButton: true,
                     confirmButtonText: 'Guardar',
@@ -209,10 +209,11 @@ Vue.component('acciones',{
                 }).then((result) => {
                     if (result.value) {
                         accionesAcc = document.getElementById('accionesAcc').value,
+                        estatusAcc = document.getElementById('estatusAcc').value,
                         fechaSeguiAcc = document.getElementById('fechaSeguiAcc').value,
                         fechaCumpliAcc = document.getElementById('fechaCumpliAcc').value
 
-                        this.editar(id, accionesAcc, fechaSeguiAcc, fechaCumpliAcc);
+                        this.editar(id, accionesAcc, estatusAcc, fechaSeguiAcc, fechaCumpliAcc);
                         Swal.fire(
                             '¡Actualizado!',
                             'El registro ha sido actualizado.',
@@ -271,11 +272,12 @@ Vue.component('acciones',{
             },
 
             //Procedimiento EDITAR.
-            editar(id, accionesAcc, fechaSeguiAcc, fechaCumpliAcc) {
+            editar(id, accionesAcc, estatusAcc, fechaSeguiAcc, fechaCumpliAcc) {
                 axios.post('../listaAcciones/crud.app', {
                     opcion: 2,
                     id: id,
                     accionesAcc: accionesAcc,
+                    estatusAcc: estatusAcc,
                     fechaSeguiAcc: fechaSeguiAcc,
                     fechaCumpliAcc: fechaCumpliAcc
                 }).then(response => {

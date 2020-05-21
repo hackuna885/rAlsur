@@ -33,6 +33,7 @@ $opcion = (isset($_POST['opcion'])) ? $_POST['opcion'] : '';
 
 $id = (isset($_POST['id'])) ? $_POST['id'] : '';
 $accionesAcc = (isset($_POST['accionesAcc'])) ? $_POST['accionesAcc'] : '';
+$estatusAcc = (isset($_POST['estatusAcc'])) ? $_POST['estatusAcc'] : '';
 $fechaSeguiAcc = (isset($_POST['fechaSeguiAcc'])) ? $_POST['fechaSeguiAcc'] : '';
 $fechaCumpliAcc = (isset($_POST['fechaCumpliAcc'])) ? $_POST['fechaCumpliAcc'] : '';
 
@@ -50,10 +51,29 @@ switch ($opcion) {
 		break;
 
 	case 2:
-		$consulta = "UPDATE listaAcciones SET accionesAcc='$accionesAcc', fechaSeguiAcc='$fechaSeguiAcc', fechaCumpliAcc='$fechaCumpliAcc' WHERE id='$id'";
+		$consulta = "UPDATE listaAcciones SET accionesAcc='$accionesAcc', estatusAcc='$estatusAcc', fechaSeguiAcc='$fechaSeguiAcc', fechaCumpliAcc='$fechaCumpliAcc' WHERE id='$id'";
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();
-        $data = $resultado->fetchAll(PDO::FETCH_ASSOC);
+		$data = $resultado->fetchAll(PDO::FETCH_ASSOC);
+
+		//Cosulta el estado CERRADO para actualizar listaConsecuencias 
+		$conDos = new SQLite3("../data/riesgos.db");
+		$verificaEstatusCompleto = $conDos -> query("SELECT procesoAcc, procedimientoAcc, causaAcc, estatusAcc, accionesAcc, totalElementos, elementos FROM vListaAccionesP WHERE accionesAcc = '$accionesAcc' AND estatusAcc = 'Cerrado'");
+			while ($veriEstatusC = $verificaEstatusCompleto->fetchArray()) {
+				$procesoAcc = $veriEstatusC['procesoAcc'];
+				$procedimientoAcc = $veriEstatusC['procedimientoAcc'];
+				$causaAcc = $veriEstatusC['causaAcc'];
+				$totalElementos = $veriEstatusC['totalElementos'];
+				$elementos = $veriEstatusC['elementos'];
+			}
+
+			if ($totalElementos === $elementos) {
+				$csActulizarConsecuencias = $conDos -> query("UPDATE listaConsecuencias SET estatusCon = 'Cerrado' WHERE procesoCon='$procesoAcc' AND procedimientoCon='$procedimientoAcc' AND causaCon='$causaAcc'");
+			}
+		$conDos -> close();
+		
+
+
 		break;
 
 	case 3:
@@ -63,7 +83,8 @@ switch ($opcion) {
 		break;
 
 	case 4:
-			$consulta = "SELECT id, procesoAcc, procedimientoAcc, causaAcc, consecuenciaAcc, calificaRAcc, estatusAcc, nomRespAtenAcc, accionesAcc, fechaSeguiAcc, fechaCumpliAcc, areaAcc, fechaHoraRegAcc, idUsuarioAcc FROM listaAcciones WHERE procesoAcc = '$nomProceso' AND procedimientoAcc = '$nomProcedimiento' AND causaAcc = '$nomCausa' AND consecuenciaAcc = '$nomConsec' AND calificaRAcc = '$cali' AND estatusAcc = '$estatus' AND nomRespAtenAcc = '$nomRespAtenRes'";
+			$consulta = "SELECT id, procesoAcc, procedimientoAcc, causaAcc, consecuenciaAcc, calificaRAcc, estatusAcc, nomRespAtenAcc, accionesAcc, fechaSeguiAcc, fechaCumpliAcc, areaAcc, fechaHoraRegAcc, idUsuarioAcc FROM listaAcciones WHERE procesoAcc = '$nomProceso' AND procedimientoAcc = '$nomProcedimiento' AND causaAcc = '$nomCausa' AND consecuenciaAcc = '$nomConsec' AND calificaRAcc = '$cali' AND nomRespAtenAcc = '$nomRespAtenRes'";
+			// $consulta = "SELECT id, procesoAcc, procedimientoAcc, causaAcc, consecuenciaAcc, calificaRAcc, estatusAcc, nomRespAtenAcc, accionesAcc, fechaSeguiAcc, fechaCumpliAcc, areaAcc, fechaHoraRegAcc, idUsuarioAcc FROM listaAcciones WHERE procesoAcc = '$nomProceso' AND procedimientoAcc = '$nomProcedimiento' AND causaAcc = '$nomCausa' AND consecuenciaAcc = '$nomConsec' AND calificaRAcc = '$cali' AND estatusAcc = '$estatus' AND nomRespAtenAcc = '$nomRespAtenRes'";
 			// $consulta = "SELECT id, procesoAcc, procedimientoAcc, causaAcc, consecuenciaAcc, calificaRAcc, estatusAcc, nomRespAtenAcc, accionesAcc, fechaSeguiAcc, fechaCumpliAcc, areaAcc, fechaHoraRegAcc, idUsuarioAcc FROM listaAcciones";
 	        $resultado = $conexion->prepare($consulta);
 	        $resultado->execute();

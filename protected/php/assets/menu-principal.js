@@ -10,8 +10,10 @@ Vue.component('menu-principal', {
                             </div>
                         </ul>
                         <!-- NOMBRE EMPRESA -->
-                        <a href="#" class="brand-logo center">
-                            <div class="sidenav-trigger" data-target="menuPrincipal">
+                        <!-- <a href="#" class="brand-logo center"> -->
+                        <a href="../inicio/home.app" class="brand-logo center">
+                            <!-- <div class="sidenav-trigger" data-target="menuPrincipal"> -->
+                            <div>
                                 <b>ALSUR</b>
                             </div>
                         </a>
