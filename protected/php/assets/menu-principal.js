@@ -31,17 +31,24 @@ Vue.component('menu-principal', {
                                 </ul> -->
                                 
                                 <ul class="collection dropdown-content" id="notificacion">
-                                    <li class="collection-item avatar" v-for="liNotifica of dataNotifica" style="font-size: .6em; line-height: 1.3em;">
-                                      <img src="../img/usrLogin.svg" alt="" class="circle">
-                                      <p class="left-align blue-text text-darken-4" style="padding: 0px;">
-                                        <b>{{liNotifica.procesoAcc}}</b>
-                                      </p>
-                                      <p>
-                                        <b>{{liNotifica.procedimientoAcc}}</b>
-                                      </p>
-                                      <p style="font-style: italic;">{{liNotifica.accionesAcc}}</p>
-                                      <p class="red-text">{{liNotifica.notaEspecial}}</p>
-                                    </li>
+                                    <a :href="'../acciones/pro.app?nomProceso='+liNotifica.procesoAcc+'&nomProcedimiento='+liNotifica.procedimientoAcc+'&nomCausa='+liNotifica.causaAcc+'&nomConsec='+liNotifica.consecuenciaAcc+'&cali='+liNotifica.calificaRAcc+'&estatus='+liNotifica.estatusAcc+'&nomRespAtenRes='+liNotifica.nomRespAtenAcc" v-for="liNotifica of dataNotifica" style="padding: 0px;">
+                                        <li class="collection-item avatar" style="font-size: .6em; line-height: 1.3em;">
+                                            
+
+                                                <img src="../img/usrLogin.svg" alt="" class="circle">
+                                                <p class="left-align blue-text text-darken-4" style="padding: 0px;">
+                                                    <b>{{liNotifica.procesoAcc}}</b>
+                                                </p>
+                                                <p>
+                                                    <b>{{liNotifica.procedimientoAcc}}</b>
+                                                </p>
+                                                <p style="font-style: italic;">{{liNotifica.accionesAcc}}</p>
+                                                <p class="red-text">{{liNotifica.notaEspecial}}</p>
+                                            
+                                            
+                                        
+                                        </li>
+                                    </a>
                                 </ul>
 
                             </li>

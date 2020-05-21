@@ -4,6 +4,11 @@ error_reporting(E_ALL ^ E_DEPRECATED);
 header("Content-Type: text/html; Charset=UTF-8");
 date_default_timezone_set('America/Mexico_City');
 
+session_start();
+
+$area = (isset($_SESSION['area'])) ? $_SESSION['area'] : '';
+$tipoUsuario = (isset($_SESSION['tipoUsuario'])) ? $_SESSION['tipoUsuario'] : '';
+
 // echo '[';
 
 $array = array();
@@ -11,10 +16,22 @@ $array = array();
 $con = new SQLite3("../data/riesgos.db");
 
 // $contadorNotifica = $con -> query("SELECT COUNT(fechaCumpliAcc) AS accPen,fechaCumpliAcc FROM listaAcciones GROUP BY fechaCumpliAcc  ORDER BY fechaCumpliAcc ");
-$contadorNotifica = $con -> query("SELECT procesoAcc, procedimientoAcc,accionesAcc, fechaCumpliAcc FROM listaAcciones ORDER BY procesoAcc, procedimientoAcc, fechaCumpliAcc");
+
+// $contadorNotifica = $con -> query("SELECT procesoAcc, procedimientoAcc,accionesAcc, fechaCumpliAcc FROM listaAcciones ORDER BY procesoAcc, procedimientoAcc, fechaCumpliAcc");
+
+if ($tipoUsuario === 1) {
+    $contadorNotifica = $con -> query("SELECT procesoAcc, procedimientoAcc, causaAcc, consecuenciaAcc, calificaRAcc, estatusAcc, nomRespAtenAcc,accionesAcc, fechaCumpliAcc FROM listaAcciones WHERE estatusAcc = 'Abierto' ORDER BY procesoAcc, procedimientoAcc, fechaCumpliAcc");
+}else{
+    $contadorNotifica = $con -> query("SELECT procesoAcc, procedimientoAcc, causaAcc, consecuenciaAcc, calificaRAcc, estatusAcc, nomRespAtenAcc,accionesAcc, fechaCumpliAcc FROM listaAcciones WHERE estatusAcc = 'Abierto' AND areaAcc = '$area' ORDER BY procesoAcc, procedimientoAcc, fechaCumpliAcc");
+}
     while ($numNotifica = $contadorNotifica->fetchArray()) {
         $procesoAcc = $numNotifica['procesoAcc'];
         $procedimientoAcc = $numNotifica['procedimientoAcc'];
+        $causaAcc = $numNotifica['causaAcc'];
+        $consecuenciaAcc = $numNotifica['consecuenciaAcc'];
+        $calificaRAcc = $numNotifica['calificaRAcc'];
+        $estatusAcc = $numNotifica['estatusAcc'];
+        $nomRespAtenAcc = $numNotifica['nomRespAtenAcc'];
         $accionesAcc = $numNotifica['accionesAcc'];
         $fechaCumpliAcc = $numNotifica['fechaCumpliAcc'];
 
@@ -510,7 +527,7 @@ $contadorNotifica = $con -> query("SELECT procesoAcc, procedimientoAcc,accionesA
             }
         }
 
-    $baseNotifica = array("procesoAcc"=>$procesoAcc, "procedimientoAcc"=>$procedimientoAcc, "accionesAcc"=>$accionesAcc, "fechaCumpliAcc"=>$fechaCumpliAcc, "notaEspecial"=>$contadorDiasRestantes);
+    $baseNotifica = array("procesoAcc"=>$procesoAcc, "procedimientoAcc"=>$procedimientoAcc, "causaAcc"=>$causaAcc, "consecuenciaAcc"=>$consecuenciaAcc,  "calificaRAcc"=>$calificaRAcc,  "estatusAcc"=>$estatusAcc,  "nomRespAtenAcc"=>$nomRespAtenAcc, "accionesAcc"=>$accionesAcc, "fechaCumpliAcc"=>$fechaCumpliAcc, "notaEspecial"=>$contadorDiasRestantes);
 
     $array[] = $baseNotifica; //Almacena los datos en un arrar array_push($array, $baseNotifica); 
     
