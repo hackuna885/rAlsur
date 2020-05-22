@@ -60,7 +60,6 @@
     <!-- DATOS USUARIO -->
 </head>
 <body>
-    
     <div id="app" <?php echo $ocultar; ?>>
         <menu-principal></menu-principal>
         <acciones></acciones>

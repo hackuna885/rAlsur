@@ -5,6 +5,15 @@ header("Content-Type: text/html; Charset=UTF-8");
 date_default_timezone_set('America/Mexico_City');
 session_start();
 
+// PHPMailer
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require 'phpMailer/Exception.php';
+require 'phpMailer/PHPMailer.php';
+require 'phpMailer/SMTP.php';
+// PHPMailer
+
 include_once 'conexion.php';
 
 $objeto = new Conexion();
@@ -47,7 +56,59 @@ switch ($opcion) {
 	case 1:
 		$consulta = "INSERT INTO listaAcciones (procesoAcc, procedimientoAcc, causaAcc, consecuenciaAcc, calificaRAcc, estatusAcc, nomRespAtenAcc, accionesAcc, fechaSeguiAcc, fechaCumpliAcc, areaAcc, fechaHoraRegAcc, idUsuarioAcc) VALUES('$nomProceso', '$nomProcedimiento', '$nomCausa', '$nomConsec', '$cali', '$estatus', '$nomRespAtenRes', '$accionesAcc', '$fechaSeguiAcc', '$fechaCumpliAcc', '$area', '$fechaHoraReg', '$nombre')";
         $resultado = $conexion->prepare($consulta);
-        $resultado->execute();
+		$resultado->execute();
+
+		//inicia Correo
+		$mail = new PHPMailer(true);
+
+		try {
+				//Server settings
+				$mail->CharSet = 'UTF-8';
+
+				$mail->isSMTP();
+
+				$mail->Host       = 'smtp.flockmail.com';  // Specify main and backup SMTP servers
+				$mail->SMTPAuth   = true;                                   // Enable SMTP authentication
+				$mail->Username   = 'oliver.velazquez@corsec.com.mx';                     // SMTP username
+				$mail->Password   = 'Oliver#123';                               // SMTP password
+				$mail->SMTPSecure = 'tls';                                  // Enable TLS encryption, `ssl` also accepted
+				$mail->Port       = 587;                                    // TCP port to connect to
+
+				//PARA PHP 5.6 Y POSTERIOR
+				$mail->SMTPOptions = array( 'ssl' => array( 'verify_peer' => false, 'verify_peer_name' => false, 'allow_self_signed' => true ) );
+
+				//Recipients
+				$mail->setFrom('oliver.velazquez@corsec.com.mx', 'Acciones de Mitigación');
+				$mail->addAddress('oliver.velazquez@corsec.com.mx');     //Correo de Salida
+
+				// Content
+				$mail->isHTML(true);
+				$mail->Subject = $area.' - '.$fechaHoraReg;
+				$mail->Body    = '
+								<h3 style="color: #0d47a1;">'.$accionesAcc.'</h3>
+								<p style="color: #64b5f6 ;"><b style="color: #0d47a1;">Proceso: </b>'.$nomProceso.'<br>
+									<b style="color: #0d47a1;">Procedimiento: </b>'.$nomProcedimiento.'<br>
+									<b style="color: #0d47a1;">Causa: </b>'.$nomCausa.'<br>
+									<b style="color: #0d47a1;">Consecuencia: </b>'.$nomConsec.'<br>
+									<b style="color: #0d47a1;">Responsable de atención: </b>'.$nomRespAtenRes.'<br>
+									<b style="color: #0d47a1;">Acción: </b>'.$accionesAcc.'<br>
+									<b style="color: #0d47a1;">Fecha de seguimiento: </b>'.$fechaSeguiAcc.'<br>
+									<b style="color: #0d47a1;">Fecha de cumplimiento: </b><span style="color: #e53935;">'.$fechaCumpliAcc.'</span><br>
+																<b style=" color: #0d47a1;">Área: </b>'.$area.'<br>
+										<b style="color: #0d47a1;">Fecha de alta: </b>'.$fechaHoraReg.'<br>
+										<b style="color: #0d47a1;">Elaborado por: </b>'.$nombre.'<br>
+								</p>
+								<a href="https://www.corsec.com.mx/rAlsurDos/acciones/pro.app?nomProceso='.$nomProceso.'&nomProcedimiento='.$nomProcedimiento.'&nomCausa='.$nomCausa.'&nomConsec='.$nomConsec.'&cali='.$cali.'&estatus='.$estatus.'&nomRespAtenRes='.$nomRespAtenRes.'">https://www.corsec.com.mx/rAlsurDos/acciones/pro.app?nomProceso='.$nomProceso.'&nomProcedimiento='.$nomProcedimiento.'&nomCausa='.$nomCausa.'&nomConsec='.$nomConsec.'&cali='.$cali.'&estatus='.$estatus.'&nomRespAtenRes='.$nomRespAtenRes.'</a>
+				
+				';
+
+			$mail->send();
+		} catch (Exception $e) {
+			
+		}
+		//inicia Correo
+
+
 		break;
 
 	case 2:
