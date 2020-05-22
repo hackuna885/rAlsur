@@ -22,6 +22,7 @@ $conexion = $objeto->Conectar();
 //NOMBRE DE USUARIO
 $area = (isset($_SESSION['area'])) ? $_SESSION['area'] : '';
 $nombre = (isset($_SESSION['nombre'])) ? $_SESSION['nombre'] : '';
+$correo = (isset($_SESSION['correo'])) ? $_SESSION['correo'] : '';
 
 
 //NUM DE PROCESO
@@ -78,8 +79,8 @@ switch ($opcion) {
 				$mail->SMTPOptions = array( 'ssl' => array( 'verify_peer' => false, 'verify_peer_name' => false, 'allow_self_signed' => true ) );
 
 				//Recipients
-				$mail->setFrom('oliver.velazquez@corsec.com.mx', 'Acciones de Mitigación');
-				$mail->addAddress('oliver.velazquez@corsec.com.mx');     //Correo de Salida
+				$mail->setFrom($correo, 'Acciones de Mitigación');
+				$mail->addAddress($correo);     //Correo de Salida
 
 				// Content
 				$mail->isHTML(true);
